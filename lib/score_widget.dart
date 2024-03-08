@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'text_styles.dart';
 
 class ScoreWidget extends StatelessWidget {
-  const ScoreWidget({Key? key, required this.targetValue}) : super(key: key);
+  const ScoreWidget({super.key, required this.targetValue});
   final int targetValue;
 
   @override
@@ -16,11 +16,7 @@ class ScoreWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text('Puntos: $targetValue',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
-              )),
+              style: TargetTextStyle.bodyText1(context)),
         ),
       ],
     );

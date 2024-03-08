@@ -12,4 +12,13 @@ class GameModel {
   int current;
   int totalScore;
   int round;
+
+  int get extraPoints {
+    var difference = (target - current).abs();
+    return difference == 0
+        ? 100
+        : difference == 1
+            ? 50
+            : 0;
+  }
 }

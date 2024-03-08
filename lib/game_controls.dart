@@ -1,43 +1,50 @@
 import 'package:flutter/material.dart';
+import 'text_styles.dart';
+import 'button_styles.dart';
 
 class GameControls extends StatelessWidget {
   const GameControls(
-      {super.key, required this.totalScore, required this.gameNumber});
+      {super.key,
+      required this.totalScore,
+      required this.gameNumber,
+      required this.onRestart});
 
   final int totalScore;
   final int gameNumber;
+  final VoidCallback onRestart;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        TextButton(
-          onPressed: null,
-          child: Text('Reiniciar', style: TextStyle(fontSize: 20)),
-        ),
+        StyledButton(
+            icon: Icons.refresh,
+            onPressed: () {
+              onRestart();
+            }),
         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
+          padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+          child: Column(
             children: [
-              Text('Tu puntuación: ', style: TextStyle(fontSize: 20)),
-              Text('0', style: TextStyle(fontSize: 20)),
+              Text('Tu puntuación total ',
+                  style: LabelTextStyle.bodyText1(context)),
+              Text('$totalScore',
+                  style: ScoreNumberTextStyle.headLine4(context)),
             ],
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Row(
+          child: Column(
             children: [
-              Text('Partida nº: ', style: TextStyle(fontSize: 20)),
-              Text('0', style: TextStyle(fontSize: 20)),
+              Text('Partida nº ', style: LabelTextStyle.bodyText1(context)),
+              Text('$gameNumber',
+                  style: ScoreNumberTextStyle.headLine4(context)),
             ],
           ),
         ),
-        TextButton(
-          onPressed: null,
-          child: Text('Más información', style: TextStyle(fontSize: 20)),
-        ),
+        StyledButton(icon: Icons.info, onPressed: () {}),
       ],
     );
   }
